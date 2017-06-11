@@ -1,0 +1,28 @@
+package com.jkrzemien.automation.webdriver.tests.junit;
+
+import com.jkrzemien.automation.logging.Logging;
+import com.jkrzemien.automation.webdriver.tests.UIContext;
+import org.junit.rules.ErrorCollector;
+
+import java.io.IOException;
+
+import static com.jkrzemien.automation.logging.Reporter.REPORTER;
+import static org.apache.commons.lang3.StringUtils.capitalize;
+
+/**
+ * @author Juan Krzemien
+ */
+public class CustomErrorCollector extends ErrorCollector implements Logging {
+
+    @Override
+    public void addError(Throwable error) {
+        REPORTER.fail(capitalize(error.getLocalizedMessage()));
+        try {
+            REPORTER.addScreenShot(UIContext.captureScreenShot());
+        } catch (IOException e) {
+            getLogger().error(e.getLocalizedMessage(), e);
+        }
+        super.addError(error);
+    }
+
+}

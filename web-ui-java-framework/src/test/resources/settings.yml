@@ -1,0 +1,22 @@
+isDebugMode: false
+
+proxy:
+  enabled: false
+  host: "proxy.corp.jkrzemien.com"
+  port: 3128
+  noProxyFor: "*.jkrzemien.com"
+
+languages:
+  - EN
+  - ES
+#  - PT_BR
+
+sut:
+  activeEnvironment: QA
+  environments:
+    - name: DEV
+      baseUrl: https://www.wikipedia.org
+    - name: QA
+      baseUrl: https://www.wikipedia.org
+    - name: PRODUCTION
+      baseUrl: https://www.wikipedia.org
